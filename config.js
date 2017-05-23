@@ -1,5 +1,5 @@
 (function() {
-  var flushInterval = ((process.env.FLUSH_INTERVAL || 1000) * 1);
+  var flushInterval = ((process.env.FLUSH_INTERVAL || 10000) * 1);
   var graphitePort = ((process.env.GRAPHITE_PORT || 2003) * 1);
   var graphiteHost = (process.env.GRAPHITE_HOST || "carbon.hostedgraphite.com");
 
@@ -12,6 +12,9 @@
 
     debug: process.env.DEBUG,
     dumpMessages: process.env.DUMP_MESSAGES,
+
+    deleteIdleStats: process.env.DELETE_IDLE_STATS || false,
+    backends: [ "./backends/graphite" ],
 
     flushInterval: flushInterval,
     graphitePort: graphitePort,
